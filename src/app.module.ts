@@ -7,9 +7,10 @@ import { MiddlewareConsumer } from '@nestjs/common';
 import { LoggerMiddleware } from './logger/logger.middleware'; // Import your middleware
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TransformInterceptor } from './transform/transform.interceptor';
+import { FileModule } from './file/file.module';
 
 @Module({
-  imports: [PrismaModule, UserModule],
+  imports: [PrismaModule, UserModule, FileModule],
   controllers: [AppController],
   providers: [AppService, {
     provide: APP_INTERCEPTOR,

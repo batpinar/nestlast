@@ -22,6 +22,7 @@ export class TransformInterceptor implements NestInterceptor {
           }
         }
         
+        console.error('HATA:', err)
         return throwError(() => new HttpException({
           status,
           message,
