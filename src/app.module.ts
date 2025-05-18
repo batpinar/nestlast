@@ -8,9 +8,10 @@ import { LoggerMiddleware } from './logger/logger.middleware'; // Import your mi
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TransformInterceptor } from './transform/transform.interceptor';
 import { FileModule } from './file/file.module';
+import { CronModule } from './cron/cron.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, FileModule],
+  imports: [PrismaModule, UserModule, FileModule, CronModule],
   controllers: [AppController],
   providers: [AppService, {
     provide: APP_INTERCEPTOR,
