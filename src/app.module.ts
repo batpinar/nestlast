@@ -5,11 +5,16 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { MiddlewareConsumer } from '@nestjs/common';
 import { LoggerMiddleware } from './logger/logger.middleware'; // Import your middleware
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { TransformInterceptor } from './transform/transform.interceptor';
 
 @Module({
   imports: [PrismaModule, UserModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {
+    provide: APP_INTERCEPTOR,
+    useClass: TransformInterceptor
+  }],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
